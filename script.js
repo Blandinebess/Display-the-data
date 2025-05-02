@@ -1,10 +1,24 @@
-// Step 1: Select the button and add an event listener that will trigger a function when clicked
+//create Variables
+const url ="https//baconipsum.com/api/?type=meat-and-filler&paras=1"
+const button =document.getElementById("loadBtn");
+const message =document.getElementById ("messageText");
 
-// Step 2: Write an async function that will use fetch() to get data from the API:
-// API: https://baconipsum.com/api/?type=meat-and-filler&paras=1
+//Create a click event listener on the Button
+button.addEventListener("click", fetchMessage);
 
-// Step 3: Wait for the fetch response and convert it to JSON
+//Create async function that sends fetch request
+ async function fetchMessage() {
+    try{
+        const response = await fetch (url);
+        const data = await response.json();
 
-// Step 4: Extract the first item from the response array and display it in the messageText paragraph
+        message.textContent = data[0];
+    }catch (error){
+        MediaKeyMessageEvent.textContent = "Oops! Something went wrong.";
+        message.style.color = "red";
+        console.log("Fetch error:, error");
+    }
 
-// Step 5: Handle any errors using try/catch and show an error message if something goes wrong
+    
+    }
+ 
